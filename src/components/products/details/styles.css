@@ -1,0 +1,123 @@
+.cardDetail {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+    width: 1200px;
+    margin: 50px auto;
+    border-radius: 7px 7px 7px 7px;
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+}
+
+.cardDetailImageContainer {}
+
+.cardDetailImage {
+    float: left;
+    height: 600px;
+    width: 600px;
+}
+
+.cardDetailImageContainer img {
+    border-radius: 7px 0 0 7px;
+}
+
+.cardDetailContent {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    height: 600px;
+    width: 600px;
+    border-radius: 0 7px 10px 0px;
+    background-color: #FFFFFF;
+    color: var(--color-black);
+}
+
+.cardDetailName {
+    margin: 0 0 0 38px;
+    padding-top: 52px;
+    font-size: 3rem;
+    color: #474747;
+}
+
+.cardDetailCategory {
+    margin: 0 0 47px 38px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #d2d2d2;
+    letter-spacing: 0.2em;
+}
+
+.cardDetailDescription {
+    height: 125px;
+    margin: 0 0 0 38px;
+    color: #8d8d8d;
+    line-height: 1.7em;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+.cardDetailPrice {
+    display: inline-block;
+    top: -13px;
+    height: 50px;
+    margin: 0 0 0 38px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #474747;
+}
+
+.cardDetailStock {
+    margin: 0 0 47px 38px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #8d8d8d;
+    letter-spacing: 0.2em;
+}
+
+.cardDetailActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardDetailButton {
+    display: inline-block;
+    height: fit-content;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-dark);
+    position: relative;
+    transition: all 0.5s;
+    z-index: 0;
+}
+
+.cardDetailButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -5%;
+    width: 5px;
+    height: 100%;
+    background-color: var(--color-accent);
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+.cardDetailButton:hover::before {
+    width: 110%;
+}
+
+.cardDetailButton:hover {
+    color: #FFFFFF;
+}

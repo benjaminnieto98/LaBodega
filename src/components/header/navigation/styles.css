@@ -1,0 +1,172 @@
+.header {
+    background-color: var(--color-dark);
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.123);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+}
+
+input[type='checkbox'] {
+    display: none;
+    visibility: hidden;
+}
+
+.hamb {
+    cursor: pointer;
+    float: right;
+    padding: 1.8rem 2rem;
+}
+
+.hambLine {
+    background: transparent;
+    display: block;
+    height: 2px;
+    position: relative;
+    width: 25px;
+
+}
+
+.hambLine::before,
+.hambLine::after {
+    background: var(--color-secondary);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.hambLine::before {
+    top: 5px
+}
+
+.hambLine::after {
+    top: -5px
+}
+
+.nav {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: var(--color-dark);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .8s ease-out;
+}
+
+.sideMenu {
+    display: none;
+}
+
+.sideMenu:checked~nav {
+    max-height: 100%;
+}
+
+.sideMenu:checked~.hamb .hambLine {
+    background: transparent;
+}
+
+.sideMenu:checked~.hamb .hambLine:before {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+.sideMenu:checked~.hamb .hambLine::after {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+.menu a {
+    position: relative;
+    display: block;
+    padding: 6px 0;
+    margin-right: 20px;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.menu a::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+.menu a:hover {
+    color: #95a5a6;
+}
+
+.menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.cartCounter {
+    position: absolute;
+    top: -3px;
+    right: -5px;
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cartCounter:hover {
+    background-color: var(--color-primary);
+    font-weight: bold;
+}
+
+@media (min-width: 912px) {
+    .nav {
+        display: flex;
+        align-items: center;
+        max-height: none;
+        top: 0;
+        position: relative;
+        float: right;
+        width: fit-content;
+        background-color: transparent;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    .menu a:hover {
+        background-color: transparent;
+        color: #fff;
+    }
+
+    .hamb {
+        display: none;
+    }
+}
