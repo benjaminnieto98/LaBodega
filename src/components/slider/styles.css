@@ -1,6 +1,11 @@
 .slider {
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
     position: relative;
+    gap: .4rem;
+    width: 60vw;
+    margin: auto;
 }
 
 .sliderContent {
@@ -10,34 +15,36 @@
     overflow-x: hidden;
     scroll-behavior: smooth;
     cursor: pointer;
-    padding: 0 3rem;
+}
+
+
+.previousButton {
+    padding-left: 10px;
 }
 
 .nextButton,
 .previousButton {
     border: none;
     width: 1.2rem;
-    height: 2rem;
-    position: absolute;
-    top: 0.5rem;
+    height: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-bg);
-    border-radius: 0.5rem;
+    border-radius: .2rem;
     color: var(--color-secondary);
     font-size: 1.5rem;
-    transition: .5s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
-.nextButton {
-    right: 0;
-}
-
-.nextButton:active,
-.previousButton:active,
 .nextButton:hover,
 .previousButton:hover {
     background-color: var(--color-secondary);
     color: var(--color-bg);
+}
+
+.nextButton:active,
+.previousButton:active {
+    background-color: var(--color-primary);
+    scale: .9;
 }

@@ -1,0 +1,83 @@
+.checkoutContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.checkoutTitle {}
+
+.checkoutFormContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.checkoutDetailContainer {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 2rem;
+}
+
+.checkoutCartContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.checkoutFormContent input {
+    width: 400px;
+    background-color: transparent;
+}
+
+.checkoutForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 18px;
+    background-color: #212c38;
+}
+
+.cartContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkoutFormInputGroup {
+    padding: 1rem;
+    width: 30vw;
+    margin-left: 200px;
+}
+
+.buttonCheckout {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--color-dark);
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #FAFAFA;
+    background: var(--color-accent);
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin: 35px 2px;
+}
+
+
+.buttonCheckout:disabled {
+    background-color: #afafaf;
+    color: #e0e0e0;
+}
+
+.buttonCheckout:enabled:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+
+.buttonCheckout :active:hover {
+    background-color: #edcb35;
+    scale: 1.01;
+}

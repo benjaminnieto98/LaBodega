@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
     onDecreaseItem: () => { },
     onAddToCart: () => { },
     onRemoveItem: () => { },
+    clearCart: () => { },
     total: 0,
 }
 
@@ -71,6 +73,11 @@ export const CartProvider = ({ children }) => {
     const getTotalItemQuantity = () => {
         return cart.reduce((acc, product) => acc + product.quantity, 0)
     }
+
+    const clearCart = () => {
+        setCart([]);
+    }
+
     return (
         <CartContext.Provider
             value={{
@@ -85,7 +92,8 @@ export const CartProvider = ({ children }) => {
                 setCategories,
                 setProducts,
                 getItemQuantity,
-                getTotalItemQuantity
+                getTotalItemQuantity,
+                clearCart,
             }}
         >
             {children}

@@ -1,20 +1,13 @@
-import './App.css';
-import NavBar from './components/header/navigation';
-import { Route, Routes } from 'react-router-dom'
-import Home from './pages/home'
-import ProductDetail from './pages/product-detail/'
+import './App.css'
+import Header from './components/header/navigation'
 import { CartProvider } from './context/cart-context'
-import Cart from './pages/cart'
+import Router from './navigation'
 function App() {
   return (
     <div>
       <CartProvider>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path='/cart' element={<Cart />} />
-        </Routes>
+        <Header />
+        <Router />
       </CartProvider>
     </div>
   )

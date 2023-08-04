@@ -1,15 +1,13 @@
 .logo {
-    --border-right: 6px;
     --text-stroke-color: rgba(255, 255, 255, 0.6);
     --animation-color: var(--color-accent);
     display: inline-block;
     letter-spacing: .1rem;
     padding: 0.7rem;
-    left: 10px;
     text-decoration: none;
     font-size: 2rem;
     position: relative;
-    color: transparent;
+    color: var(--text-stroke-color);
     -webkit-text-stroke: 1px var(--text-stroke-color);
 }
 
@@ -24,7 +22,7 @@
     inset: 0;
     border-right: var(--border-right) solid var(--animation-color);
     overflow: hidden;
-    transition: .8s;
+    transition: .6s;
     -webkit-text-stroke: 1px var(--animation-color);
 }
 

@@ -1,0 +1,22 @@
+.categoryContainer {
+    min-width: 100px;
+    height: fit-content;
+    padding: .5rem;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 12px
+}
+
+.categoryContainer:hover {
+    background-color: #3f4a56;
+    color: #FFFFFF;
+}
+
+.categoryName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+}

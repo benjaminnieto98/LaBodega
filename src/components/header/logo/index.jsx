@@ -5,7 +5,7 @@ const Logo = () => {
     return (
         <Link to='/' className='logo' >
             <span className='actuaText'>&nbsp;iSolutions</span>
-            <span className='hoverText' aria-hidden='true'>&nbsp;iS</span>
+            <span className='hoverText' aria-hidden='true'>&nbsp;iSolutions</span>
         </Link >
     )
 }

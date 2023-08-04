@@ -1,13 +1,30 @@
-Entrega
-Brand: iSolutions
-Este proyecto representa una aplicación web para la entrega de la marca iSolutions. A continuación se muestra un listado de categorías clickeables disponibles en la aplicación:
+Getting Started with Vite
+This project was bootstrapped with Vite.
 
-iPhone
-iPad
-Mac
-Apple Watch
-AirPods
-Accesorios
-Apple TV
-HomeKit
-Servicios
+Available Scripts
+In the project directory, you can run:
+
+npm dev
+Runs the app in the development mode.
+Open http://localhost:5173/ to view it in your browser.
+
+The page will reload when you make changes.
+You may also see any lint errors in the console.
+
+npm run build
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
+
+See the section about deployment for more information.
+
+Pre-requisitos
+Visual Studio Code
+NodeJS > 16 y npm. (Recomendacion usar nvm)
+Estructura de Carpetas
+src: Es la carpeta contenedora de todo nuestro codigo dentro de la aplicacion de React y contiene todas las funcionalidades.
+components: Es la carpeta que contiene todos los componentes de nuestra aplicacion (Ej: Header, Button, Products, etc...).
+App.js: Es el componente donde inicia toda la aplicacion.
+pages: Es la carpeta que contiene todas las paginas de nuestra aplicacion (Ej: Home, Cart, Checkout, etc...).

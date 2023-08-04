@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import './styles.css'
-const Slider = ({ children }) => {
+
+const Slider = memo(({ children }) => {
     const sliderContentRef = useRef(null);
     const startX = useRef(null);
     const scrollLeft = useRef(null);
@@ -31,8 +32,9 @@ const Slider = ({ children }) => {
 
     return (
         <div className="slider">
-            <button onClick={onHandleClickPrevious} type='button' className='previousButton'><span>&lt;</span></button>
-            <button onClick={onHandleClickNext} type='button' className='nextButton'><span>&gt;</span></button>
+            <button onClick={onHandleClickPrevious} type='button' className='previousButton'><i className="material-symbols-rounded">
+                arrow_back_ios
+            </i></button>
             <div
                 ref={sliderContentRef}
                 className="sliderContent"
@@ -42,8 +44,11 @@ const Slider = ({ children }) => {
             >
                 {children}
             </div>
+            <button onClick={onHandleClickNext} type='button' className='nextButton'><span className="material-symbols-rounded">
+                arrow_forward_ios
+            </span></button>
         </div>
     )
-}
+});
 
 export default Slider;

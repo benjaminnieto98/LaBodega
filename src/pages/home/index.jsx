@@ -1,23 +1,22 @@
 import { useEffect, useState, useContext } from 'react'
 import './styles.css'
-import NavBar from '../../components/header/navigation'
 import Input from '../../components/input';
 import Card from '../../components/products/card';
-import Details from '../../components/products/details';
 import Loader from '../../components/loader';
 import { useFetch } from '../../hooks/useFetch';
 import { API_URLS } from '../../constants/index'
 import { useNavigate } from 'react-router-dom';
 import Slider from '../../components/slider';
 import { CartContext } from '../../context/cart-context';
+import CategoryItem from '../../components/categories/item';
 
 function Home() {
     const navigate = useNavigate();
-    const [search, setSearch] = useState('');
     const [active, setActive] = useState(false);
     const [isFiltered, setIsFiltered] = useState(false);
     const [productFiltered, setProductFiltered] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All');
+
     const { setProducts, onAddToCart } = useContext(CartContext);
 
     const { data: products, loading: loadingProducts, error: errorProducts } = useFetch(API_URLS.PRODUCTS.url, API_URLS.PRODUCTS.config);
@@ -39,7 +38,6 @@ function Home() {
 
     const onChange = (event) => {
         const value = event.target.value;
-        setSearch(value);
         filterBySearch(value);
     }
 
@@ -69,46 +67,45 @@ function Home() {
     }
 
 
+
     return (
-        <div>
+        <>
             <div className='contentContainer'>
                 <div className='categoriesContainer'>
-                    {loadingCategories && <Loader />}
-                    {errorCategories && <h2>{errorCategories}</h2>}
+                    {errorCategories ? <h2>{errorCategories}</h2> : null}
                     <Slider>
-                        <button onClick={() => setIsFiltered(false)} type='button' className='categoryContainer'>
-                            <p className='categoryName'>All</p>
-                        </button>
+                        <CategoryItem name="All" onSelectCategory={() => setIsFiltered(false)} type='button' />
                         {
                             categories.map((category) => (
-                                <button key={category.id} onClick={() => onFilter(category.name)} type='button' className='categoryContainer'>
-                                    <p className='categoryName'>{category.name}</p>
-                                </button>
+                                <CategoryItem key={category.id} name={category.name} onSelectCategory={() => onFilter(category.name)} type='button' />
                             ))
                         }
                     </Slider>
                 </div>
-                <div className='inputContainer'>
+                <div className='filterContainer'>
                     {
-                        isFiltered && (
+                        isFiltered ? (
                             <Input
                                 placeholder='find a product'
                                 id='task'
                                 required={true}
                                 name='Search'
+                                label='Search'
                                 onChange={onChange}
                                 onFocus={onFocus}
                                 onBlur={onBlur}
                                 active={active}
                             />
-                        )}
+                        ) : null}
 
                 </div>
                 <h2 className='headerTitleCard'>Products</h2>
                 <div className='cardContainer'>
-                    {loadingProducts && <Loader />}
-                    {errorProducts && <h2>{errorProducts}</h2>}
-                    {search.length > 0 && productFiltered.length === 0 && <h2>Product not found</h2>}
+                    {loadingProducts ?
+                        <div className='loaderContainer'>
+                            <Loader />
+                        </div> : null}
+                    {errorProducts ? <h2>{errorProducts}</h2> : null}
                     {
                         isFiltered ? (
                             productFiltered.map((product) => (
@@ -121,11 +118,10 @@ function Home() {
                         )
                     }
                     {
-                        isFiltered && productFiltered.length === 0 && <h2>Products not found</h2>
-                    }
+                        isFiltered ? productFiltered.length === 0 && <h2>Products not found</h2> : null}
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
