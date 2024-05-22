@@ -1,132 +1,35 @@
-/* .loaderContainer {
+.contentSpinner{
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto;
+    justify-content: center;
+    height: 100vw;
+    width: 100vw;
 }
 
-.loaderContainer h2 {
+.spinner {
     position: relative;
-    font-size: 5rem;
-    font-family: 'Poppins', sans-serif;
-    color: var(--color-bg);
-    -webkit-text-stroke: 0.3vw var(--color-primary);
-    text-transform: uppercase;
-}
-
-.loaderContainer h2::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--color-accent);
-    -webkit-text-stroke: var(--color-accent);
-    border-right: 2px solid var(--color-accent);
-    overflow: hidden;
-    animation: animate 2s linear infinite;
-}
-
-@keyframes animate {
-
-    0%,
-    10%,
-    100% {
-        width: 0;
-    }
-
-    70%,
-    90% {
-        width: 100%;
-    }
-} */
-
-.wrapper {
-    width: 200px;
-    height: 60px;
-    position: relative;
-    z-index: 1;
-}
-
-.circle {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #fff;
-    left: 15%;
-    transform-origin: 50%;
-    animation: circle7124 .5s alternate infinite ease;
-}
-
-@keyframes circle7124 {
-    0% {
-        top: 60px;
-        height: 5px;
-        border-radius: 50px 50px 25px 25px;
-        transform: scaleX(1.7);
-    }
-
-    40% {
-        height: 20px;
-        border-radius: 50%;
-        transform: scaleX(1);
-    }
-
-    100% {
-        top: 0%;
-    }
-}
-
-.circle:nth-child(2) {
-    left: 45%;
-    animation-delay: .2s;
-}
-
-.circle:nth-child(3) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
-}
-
-.shadow {
-    width: 20px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: absolute;
-    top: 62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(var(--color-primary) 35%, var(--color-secondary));
+    width: 100px;
+    height: 100px;
+    animation: spinning 1s linear infinite;
+    border-radius: 50px;
     filter: blur(1px);
-    animation: shadow046 .5s alternate infinite ease;
+    box-shadow: 0px -5px 20px 0px var(--color-secondary), 0px 5px 20px 0px var(--color-primary);
 }
 
-@keyframes shadow046 {
-    0% {
-        transform: scaleX(1.5);
-    }
-
-    40% {
-        transform: scaleX(1);
-        opacity: .7;
-    }
-
-    100% {
-        transform: scaleX(.2);
-        opacity: .4;
-    }
+.spinner1 {
+    background-color: var(--color-bg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    filter: blur(10px);
 }
 
-.shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: .2s
-}
-
-.shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
+@keyframes spinning {
+    to {
+        transform: rotate(360deg);
+    }
 }

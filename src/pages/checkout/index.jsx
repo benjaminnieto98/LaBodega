@@ -12,26 +12,26 @@ import Total from '../../components/cart/total'
 
 const initialState = {
     name: { value: '', error: '', hasError: true, active: false, name: 'name' },
-    surname: { value: '', error: '', hasError: true, active: false, name: 'surname' },
-    document: { value: '', error: '', hasError: true, active: false, name: 'document' },
+    // surname: { value: '', error: '', hasError: true, active: false, name: 'surname' },
+    // document: { value: '', error: '', hasError: true, active: false, name: 'document' },
     email: { value: '', error: '', hasError: true, active: false, name: 'email' },
     phone: { value: '', error: '', hasError: true, active: false, name: 'phone' },
     address: { value: '', error: '', hasError: true, active: false, name: 'address' },
-    postalCode: { value: '', error: '', hasError: true, active: false, name: 'postalCode' },
+    // postalCode: { value: '', error: '', hasError: true, active: false, name: 'postalCode' },
     isFormValid: false,
 }
 
 function Checkout() {
-    const { cart, total, setCart, onAddToCart, onDecreaseItem, onRemoveItem, getTotalItemQuantity, clearCart } = useContext(CartContext);
+    const {cart, total, setCart, clearCart, onAddToCart, onDecreaseItem, onRemoveItem, getTotalItemQuantity} = useContext(CartContext);
     const [formState, inputHandler, inputFocus, inputBlur, clearInputs] = useForm(initialState)
     const { state } = useLocation();
     const navigate = useNavigate();
     let query = useQuery();
-
+    
     useEffect(() => {
-        const cartId = query.get("cartId")
-
-        if (query.get("cartId")) {
+        const cartId = query.get("cartId") 
+        
+        if(query.get("cartId")) {
             const getCart = async () => {
                 const cart = await firebaseServices.getCartById(cartId)
                 return cart
@@ -41,12 +41,11 @@ function Checkout() {
                     setCart(cart.items)
                 })
                 .catch((error) => {
-                    console.log({ error })
+                    console.log({error})
                 })
         }
 
     }, [query])
-
 
     const onChange = (event) => {
         const { name, value } = event.target
@@ -65,35 +64,23 @@ function Checkout() {
         const newOrder = {
             buyer: {
                 name: formState.name.value,
-                surname: formState.surname.value,
-                document: formState.document.value,
                 email: formState.email.value,
                 phone: formState.phone.value,
                 address: formState.address.value,
-                postalCode: formState.postalCode.value,
             },
             createdAt: new Date(),
             items: cart,
             payment: {
-                currency: 'USD',
-                method: 'CASH',
-                type: 'CASH'
-            },
-            seller: {
-                id: 1,
-                name: '',
-                phone: '',
-                email: ''
+                method: 'EFECTIVO',
             },
             shipping: {
-                deliverDate: new Date() + 7,
-                trackingNumber: '123456ff227aa89',
                 type: 'DELIVERY'
             },
-            total: total
+            total: total,
+            status: 'Pendiente', 
         }
-
-        const orderId = await firebaseServices.createOrder(newOrder)
+    
+        const orderId = await firebaseServices.createOrder(newOrder);
         await firebaseServices.updateCart(state.cartId)
 
         return {
@@ -106,6 +93,7 @@ function Checkout() {
         const { orderId } = await onHandlerOrder();
         clearInputs({ formState })
         navigate('/success-order', { state: { orderId: orderId.id } })
+        clearCart();
     }
 
     return (
@@ -113,15 +101,15 @@ function Checkout() {
             <div className='checkoutDetailContainer'>
                 <div className='checkoutFormContainer'>
                     <form onSubmit={onSubmit} className="checkoutForm">
-                        <h1 className='checkoutTitle'>Checkout</h1>
+                        <h1 className='checkoutTitle'>🚀¡Ya casi terminamos!</h1>
                         <div className="checkoutFormContent">
                             <div className="checkoutFormInputGroup">
                                 <Input
-                                    placeholder='name'
+                                    placeholder='Nombre y Apellido'
                                     id='name'
                                     name='name'
                                     required={true}
-                                    label='Name'
+                                    label='Nombre y Apellido'
                                     onChange={onChange}
                                     onFocus={(e) => onFocus({ e, name: 'name' })}
                                     onBlur={(e) => onBlur({ e, name: 'name' })}
@@ -131,7 +119,7 @@ function Checkout() {
                                     maxLength={40}
                                 />
                             </div>
-                            <div className="checkoutFormInputGroup">
+                            {/* <div className="checkoutFormInputGroup">
                                 <Input
                                     placeholder='surname'
                                     id='surname'
@@ -146,8 +134,8 @@ function Checkout() {
                                     hasError={formState.surname.hasError}
                                     maxLength={40}
                                 />
-                            </div>
-                            <div className="checkoutFormInputGroup">
+                            </div> */}
+                            {/* <div className="checkoutFormInputGroup">
                                 <Input
                                     placeholder='document'
                                     id='document'
@@ -162,10 +150,10 @@ function Checkout() {
                                     hasError={formState.document.hasError}
                                     maxLength={15}
                                 />
-                            </div>
+                            </div> */}
                             <div className="checkoutFormInputGroup">
                                 <Input
-                                    placeholder='email'
+                                    placeholder='Email'
                                     id='email'
                                     name='email'
                                     required={true}
@@ -181,11 +169,11 @@ function Checkout() {
                             </div>
                             <div className="checkoutFormInputGroup">
                                 <Input
-                                    placeholder='phone number'
+                                    placeholder='Teléfono'
                                     id='phone'
                                     name='phone'
                                     required={true}
-                                    label='Phone Number'
+                                    label='Teléfono'
                                     onChange={onChange}
                                     onFocus={() => onFocus({ name: 'phone' })}
                                     onBlur={() => onBlur({ name: 'phone' })}
@@ -197,11 +185,11 @@ function Checkout() {
                             </div>
                             <div className="checkoutFormInputGroup">
                                 <Input
-                                    placeholder='address'
+                                    placeholder='Dirección'
                                     id='address'
                                     name='address'
                                     required={true}
-                                    label='Address'
+                                    label='Dirección'
                                     onChange={onChange}
                                     onFocus={() => onFocus({ name: 'address' })}
                                     onBlur={() => onBlur({ name: 'address' })}
@@ -211,7 +199,7 @@ function Checkout() {
                                     maxLength={80}
                                 />
                             </div>
-                            <div className="checkoutFormInputGroup">
+                            {/* <div className="checkoutFormInputGroup">
                                 <Input
                                     placeholder='postal code'
                                     id='postalCode'
@@ -226,12 +214,12 @@ function Checkout() {
                                     hasError={formState.postalCode.hasError}
                                     maxLength={10}
                                 />
-                            </div>
+                            </div> */}
                         </div>
-                        <button disabled={!formState.isFormValid} type='submit' onClick={clearCart} className='buttonCheckout'>Buy</button>
+                        <button disabled={!formState.isFormValid} type='submit' className='buttonCheckout'>Confirmar</button>
                     </form>
                 </div>
-                {cart?.length > 0 ? (
+                {/* {cart?.length > 0 ? (
                     <div className='checkoutCartContainer'>
                         <h1 className='checkoutTitle'>Cart Details</h1>
                         {
@@ -241,7 +229,7 @@ function Checkout() {
                         }
                         <Total total={total} totalItemQuantity={getTotalItemQuantity()} />
                     </div>
-                ) : null}
+                ) : null} */}
             </div>
         </div>
     )

@@ -1,21 +1,29 @@
 .cartDetailActions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    color: black;
-    height: 100px;
-    width: 60vw;
-    min-width: 1000px;
-    background: var(--color-primary);
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 18px;
-    margin-bottom: 24px;
+    /* border-top: 1.5px solid var(--color-gray); */
+    width: 80vw;
 }
 
-.cartTotal {
-    font-size: 1.5rem;
-    font-weight: bold;
+.totalContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin-top: 10px;
+}
+
+.totalText{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.totalValue{
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .cartItemQuantityTotal {
@@ -25,24 +33,27 @@
 .cartButttonCheckout {
     display: flex;
     align-items: center;
-    font-size: 2rem;
-    color: var(--color-dark);
+    justify-content: center;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-bg);
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid #FAFAFA;
-    background: var(--color-accent);
-    box-shadow: 3px 3px #fafafa;
+    border-radius: 16px;
+    background: var(--color-secondary);
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    margin: 35px 2px;
-}
-
-.cartButttonCheckout:hover {
-    background-color: #edcb35;
-    scale: 1.01;
+    margin-top: 20px;
+    width: 400px;
 }
 
 .cartButttonCheckout:active {
+    scale: .99;
     box-shadow: none;
-    transform: translate(3px, 3px);
+}
+
+.cartButttonCheckout:hover {
+    background-color: var(--color-primary);
 }

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { firebaseServices } from "../services/firebase";
 
 const initialState = {
     products: [],
@@ -20,28 +21,39 @@ export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const productsData = await firebaseServices.getProducts();
+                if (!productsData.error) {
+                    setProducts(productsData);
+                    setLoading(false);
+                } else {
+                    setError("Error fetching products");
+                }
+            } catch (error) {
+                setError("Error fetching products");
+            }
+        };
+
+        fetchProducts();
+    }, []);
+    
     const onAddToCart = (id) => {
         const item = products.find((product) => product.id === id);
-        if (cart?.find((product) => product.id === id)?.quantity === Number(item.stock)) return;
-        if (cart?.length === 0) {
-            setCart([{ ...item, quantity: 1 }])
-        }
-        if (cart?.length > 0 && !cart?.find((product) => product.id === id)) {
-            setCart([...cart, { ...item, quantity: 1 }])
-        }
-        if (cart?.length > 0 && cart?.find((product) => product.id === id)) {
-            setCart((currentCart) => {
-                return currentCart.map((product) => {
-                    if (product.id === id) {
-                        return { ...product, quantity: product.quantity + 1 }
-                    } else {
-                        return product
-                    }
-                })
-            });
-        }
-    }
+        if (!item) return; // Si el producto no se encuentra, salir
+        const cartItem = cart.find((product) => product.id === id);
+        if (cartItem?.quantity === Number(item.stock)) return;
+        const updatedCart = cartItem
+            ? cart.map((product) =>
+                  product.id === id ? { ...product, quantity: product.quantity + 1 } : product
+              )
+            : [...cart, { ...item, quantity: 1 }];
+        setCart(updatedCart);
+    };
 
     const onDecreaseItem = (id) => {
         if (cart?.find((product) => product.id === id)?.quantity === 1) return;
@@ -96,7 +108,7 @@ export const CartProvider = ({ children }) => {
                 clearCart,
             }}
         >
-            {children}
+            {!loading && !error ? children : <p>{error || "Cargando..."}</p>}
         </CartContext.Provider>
-    )
+    );
 }

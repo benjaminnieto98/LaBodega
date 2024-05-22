@@ -1,0 +1,324 @@
+.AdminContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.addForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    border: 2px solid var(--color-gray);
+    padding: 30px;
+    margin: 15px;
+    border-radius: 16px;
+}
+
+.formTitle {
+    color: var(--color-white);
+    margin-bottom: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 10px;
+}
+
+.input-group input,
+select {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid var(--color-gray);
+    background: var(--color-bg);
+    border-radius: 5px;
+    outline: none;
+    color: var(--color-white);
+    font-size: .8rem;
+    transition: 0.5s ease-in-out;
+}
+
+.input-group select {
+    width: 300px;
+}
+
+.input-group label {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: .7rem;
+    color: var(--color-white);
+    transition: 0.5s ease-in-out;
+}
+
+.input-group label::after {
+    color: transparent;
+}
+
+.input-group select:valid~label,
+input:valid~label {
+    color: var(--color-gray);
+    font-size: .7rem;
+    padding: 0 6px;
+    background: var(--color-bg);
+    border-left: 1.5px solid var(--color-gray);
+    border-right: 1.5px solid var(--color-gray);
+    transform: translateX(10px) translateY(-8px);
+    letter-spacing: 2px;
+}
+
+.input-group select:focus~label,
+input:focus~label {
+    color: var(--color-white);
+    border-left: 1.5px solid var(--color-white);
+    border-right: 1.5px solid var(--color-white);
+}
+
+
+.input-group select:focus,
+input:focus {
+    border: 1px solid var(--color-white);
+}
+
+
+.addButton {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px;
+    width: 90%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.addButton:hover {
+    background-color: #3193fdc4;
+}
+
+.cancelButton {
+    margin-top: 12px;
+    background-color: #dc3545;
+    color: var(--color-white);
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px;
+    width: 90%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.cancelButton:hover {
+    background-color: #d66772;
+}
+
+.custum-file-upload {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--color-gray);
+    background: var(--color-bg);
+    padding: 50px;
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+    margin: 10px;
+}
+
+.custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+    height: 80px;
+    fill: var(--color-gray);
+}
+
+.custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: .8rem;
+    color: var(--color-gray);
+}
+
+.custum-file-upload .text span {
+    font-size: .7rem;
+    color: var(--color-gray);
+}
+
+.custum-file-upload input {
+    display: none;
+}
+
+.ProductListContainer {
+    width: 80%;
+    min-width: 400px;
+    overflow-x: auto;
+}
+
+.ProductListContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+.ProductListContainer::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray);
+    border-radius: 5px;
+}
+
+.ProductListContainer::-webkit-scrollbar-track {
+    background-color: var(--color-bg); 
+}
+
+.AdminProductList {
+    align-items: center;
+    justify-content: flex-start;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.AdminProductCard {
+    border: 2px solid var(--color-gray);
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 160px;
+    max-width: 160px;
+    height: 300px;
+    color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.ProductImageContainer {
+    position: relative;
+    display: block;
+    max-height: 120px;
+    overflow: hidden;
+}
+
+.ProductImage {
+    display: block;
+    height: 110px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.ProductName {
+    font-size: .9rem;
+    margin: 5px 0;
+    color: var(--color-gray);
+}
+
+.ProductPrice {
+    font-weight: 600;
+}
+
+.ProductCategory {
+    color: var(--color-gray);
+    font-weight: 600;
+}
+
+.ProductDescription,
+.ProductPrice,
+.ProductStock,
+.ProductCategory {
+    margin-bottom: 2px;
+}
+
+.ProductButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.EditButton,
+.DeleteButton {
+    background-color: var(--color-dark);
+    border: var(--color-accent) 2px solid;
+    color: var(--color-accent);
+    padding: 6px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.DeleteButton {
+    border: #dc3545 2px solid;
+    color: #dc3545;
+}
+
+.EditButton:hover{
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.DeleteButton:hover{
+    background-color:#dc3545;
+    color: var(--color-white);
+}
+
+/* Estilos para la lista de categorías */
+.CategoryList {
+    list-style: none;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    gap: 6px;
+}
+
+.CategoryItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--color-gray);
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-bg);
+}
+
+.CategoryName {
+    font-size: 1rem;
+    color: var(--color-white);
+}
+
+
+
+
+.CategoryForm input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid var(--color-white);
+    border-radius: 3px;
+}

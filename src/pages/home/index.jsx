@@ -1,47 +1,48 @@
-import { useEffect, useState, useContext } from 'react'
-import './styles.css'
+import React, { useEffect, useState, useContext } from 'react';
+import './styles.css';
 import Input from '../../components/input';
 import Card from '../../components/products/card';
 import Loader from '../../components/loader';
-import { useFetch } from '../../hooks/useFetch';
-import { API_URLS } from '../../constants/index'
 import { useNavigate } from 'react-router-dom';
 import Slider from '../../components/slider';
 import { CartContext } from '../../context/cart-context';
 import CategoryItem from '../../components/categories/item';
+import { firebaseServices } from '../../services/firebase';
+import Hero from '../../components/hero';
 
 function Home() {
     const navigate = useNavigate();
     const [active, setActive] = useState(false);
     const [isFiltered, setIsFiltered] = useState(false);
     const [productFiltered, setProductFiltered] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('All');
-
-    const { setProducts, onAddToCart } = useContext(CartContext);
-
-    const { data: products, loading: loadingProducts, error: errorProducts } = useFetch(API_URLS.PRODUCTS.url, API_URLS.PRODUCTS.config);
-    const { data: categories, loading: loadingCategories, error: errorCategories } = useFetch(API_URLS.CATEGORIES.url, API_URLS.CATEGORIES.config);
+    const [selectedCategory, setSelectedCategory] = useState('Todo');
+    const [loadingPage, setLoadingPage] = useState(true);
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const { onAddToCart } = useContext(CartContext);
 
     const filterBySearch = (query) => {
-        if (selectedCategory !== 'All' && query.length === 0) {
+        if (selectedCategory && query.length === 0) {
             onFilter(selectedCategory);
             return;
         }
-        let updateProductList = query.length === 0 ? [...products] : [...productFiltered];
+        let updateProductList = query.length === 0 ? [...products] : [...products];
 
         updateProductList = updateProductList.filter((item) => {
             return item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-        })
+        });
 
         setProductFiltered(updateProductList);
-    }
+    };
 
     const onChange = (event) => {
         const value = event.target.value;
         filterBySearch(value);
     }
 
-    const onFocus = () => {
+    const onFocus = (event) => {
+        const value = event.target.value;
+        filterBySearch(value);
         setActive(true);
     }
 
@@ -50,14 +51,32 @@ function Home() {
     }
 
     useEffect(() => {
-        if (products?.length > 0) {
-            setProducts(products);
-        }
-    }, [products, setProducts])
+        const fetchData = async () => {
+            try {
+                const productsData = await firebaseServices.getProducts();
+                const categoriesData = await firebaseServices.getCategories();
+    
+                if (!productsData.error && !categoriesData.error) {
+                    setProducts(productsData);
+                    setCategories(categoriesData);
+                } else {
+                    setProducts('Error fetching products');
+                    setCategories('Error fetching categories');
+                }
+                setLoadingPage(false);
+            } catch (error) {
+                setProducts('Error fetching products');
+                setCategories('Error fetching categories');
+                setLoadingPage(false);
+            }
+        };
+    
+        fetchData();
+    }, []);
 
     const onShowDetails = (id) => {
-        navigate(`/products/${id}`)
-    }
+        navigate(`/products/${id}`);
+    };
 
     const onFilter = (name) => {
         setIsFiltered(true);
@@ -66,63 +85,56 @@ function Home() {
         setSelectedCategory(name);
     }
 
-
-
     return (
-        <>
-            <div className='contentContainer'>
-                <div className='categoriesContainer'>
-                    {errorCategories ? <h2>{errorCategories}</h2> : null}
-                    <Slider>
-                        <CategoryItem name="All" onSelectCategory={() => setIsFiltered(false)} type='button' />
-                        {
-                            categories.map((category) => (
-                                <CategoryItem key={category.id} name={category.name} onSelectCategory={() => onFilter(category.name)} type='button' />
-                            ))
-                        }
-                    </Slider>
+        <div>
+            {loadingPage ? (
+                <div className='loaderContainer'>
+                    <Loader />
                 </div>
-                <div className='filterContainer'>
-                    {
-                        isFiltered ? (
+            ) : (
+                <>
+                    <div className='contentContainer'>
+                        <h1 className='title'>Bienvenido a La Bodega🍻</h1>
+                        <h2 className='subtitle'>¡Encontrá tus bebidas favoritas!</h2>
+                        <Hero />
+                        <div className='filterContainer'>
                             <Input
-                                placeholder='find a product'
+                                placeholder='Buscar...'
                                 id='task'
                                 required={true}
-                                name='Search'
-                                label='Search'
+                                name='Buscar'
+                                label='Buscar'
                                 onChange={onChange}
                                 onFocus={onFocus}
                                 onBlur={onBlur}
                                 active={active}
                             />
-                        ) : null}
+                        </div>
+                        <div className='categoriesContainer'>
+                            <Slider>
+                                <CategoryItem name="Todo" onSelectCategory={() => setIsFiltered(false)} type='button' />
+                                {categories.map((category) => (
+                                    <CategoryItem key={category.id} name={category.name} onSelectCategory={() => onFilter(category.name)} type='button' />
+                                ))}
+                            </Slider>
+                        </div>
 
-                </div>
-                <h2 className='headerTitleCard'>Products</h2>
-                <div className='cardContainer'>
-                    {loadingProducts ?
-                        <div className='loaderContainer'>
-                            <Loader />
-                        </div> : null}
-                    {errorProducts ? <h2>{errorProducts}</h2> : null}
-                    {
-                        isFiltered ? (
-                            productFiltered.map((product) => (
-                                <Card key={product.id} {...product} onShowDetails={onShowDetails} onAddToCart={onAddToCart} />
-                            ))
-                        ) : (
-                            products.map((product) => (
-                                <Card key={product.id} {...product} onShowDetails={onShowDetails} onAddToCart={onAddToCart} />
-                            ))
-                        )
-                    }
-                    {
-                        isFiltered ? productFiltered.length === 0 && <h2>Products not found</h2> : null}
-                </div>
-            </div>
-        </>
-    )
+                        <h3>Bebidas Destacadas🔥</h3>
+                        <div className='cardContainer'>
+                            {isFiltered
+                                ? productFiltered.map((product) => (
+                                    <Card key={product.id} {...product} onShowDetails={onShowDetails} onAddToCart={onAddToCart} />
+                                ))
+                                : products.map((product) => (
+                                    <Card key={product.id} {...product} onShowDetails={onShowDetails} onAddToCart={onAddToCart} />
+                                ))}
+                            {isFiltered && productFiltered.length === 0 && <h2>No se encontraron bebidas...</h2>}
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    );
 }
 
-export default Home
+export default Home;

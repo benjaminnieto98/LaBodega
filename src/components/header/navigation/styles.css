@@ -1,179 +1,206 @@
-.header {
+.navBar {
+    display: flex;
     background-color: var(--color-dark);
-    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.123);
+    padding: 12px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
-    top: 0;
-    height: 60px;
-    z-index: 1;
+    z-index: 100;
 }
 
-.navContent {
-    width: 80vw;
-    justify-content: center;
-    margin: auto;
-}
+/* Burger Menu */
 
-input[type='checkbox'] {
+/* .burgerMenu {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+} */
+
+.burgerMenu {
     display: none;
+}
+
+
+.burger {
+    position: absolute;
+    width: 20px;
+    height: 16px;
+    cursor: pointer;
+    display: block;
+}
+
+.burgerMenu input {
     visibility: hidden;
 }
 
-.hamb {
-    cursor: pointer;
-    float: right;
-    padding: 1.8rem 2rem;
-}
-
-.hambLine {
-    background: transparent;
+.burger span {
+    z-index: 101;
     display: block;
-    height: 2px;
-    position: relative;
-    width: 25px;
-
-}
-
-.hambLine::before,
-.hambLine::after {
-    background: var(--color-secondary);
-    content: '';
-    display: block;
-    height: 100%;
     position: absolute;
-    transition: all .2s ease-out;
+    height: 2px;
     width: 100%;
-}
-
-.hambLine::before {
-    top: 5px
-}
-
-.hambLine::after {
-    top: -5px
-}
-
-.nav {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-color: var(--color-dark);
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height .8s ease-out;
+    background-color: var(--color-white);
+    border-radius: 18px;
     left: 0;
+    transform: rotate(0deg);
+    transition: all .3s ease-in-out;
 }
 
-.sideMenu {
-    display: none;
+.burger span:nth-of-type(1) {
+    top: 20%;
+    transform-origin: left center;
 }
 
-.sideMenu:checked~nav {
-    max-height: 100%;
+
+.burger span:nth-of-type(2) {
+    top: 80%;
+    transform-origin: left center;
+    transform: translateY(-100%);
 }
 
-.sideMenu:checked~.hamb .hambLine {
-    background: transparent;
-}
-
-.sideMenu:checked~.hamb .hambLine:before {
-    transform: rotate(-45deg);
-    top: 0;
-}
-
-.sideMenu:checked~.hamb .hambLine::after {
+#burger:checked~span:nth-of-type(1) {
     transform: rotate(45deg);
-    top: 0;
+    top: 2px;
+    left: 2px;
 }
 
-.menu {
+#burger:checked~span:nth-of-type(2) {
+    transform: rotate(-45deg);
+    top: 16px;
+    left: 2px;
+}
+
+#burger:checked~.navLinks {
+    display: flex;
+    transform: translateX(0%);
+}
+
+.navLinks {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    list-style-type: none;
-    gap: 1rem;
-}
-
-.menu li {
-    position: relative;
-    display: block;
-    padding-top: 8px;
-    margin-right: 20px;
-    color: var(--color-secondary);
-    text-decoration: none;
-    transition: 0.5s;
-}
-
-.menu li::after {
-    display: block;
-    position: absolute;
-    content: '';
-    top: 100%;
-    left: 0;
+    justify-content: flex-start;
+    align-items: start;
+    padding: 50px 0px;
     width: 100%;
-    height: 3px;
-    background: var(--color-accent);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.5s;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-bg);
+    z-index: 100;
+    transition: cubic-bezier(.4, 0, .6, 1) 400ms;
+    transform: translateY(-100%);
 }
 
-.menu li:hover {
-    background-color: transparent;
-    color: #fff;
+.navLinks a {
+    padding-left: calc(48px + env(safe-area-inset-left));
+    padding-right: calc(48px + env(safe-area-inset-right));
+    font-size: 1.7rem;
+    color: var(--color-white);
+    line-height: 1.7;
+    font-weight: 600;
+    letter-spacing: .007em;
+    transition: all .2s ease-in-out;
 }
 
-.menu li:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.navLinks a:hover {
+    color: var(--color-secondary);
 }
 
-.cartWidget {
+
+.logoContainer {
+    width: 80px;
+    height: 80px;
+}
+
+.logoImage{
+    width: 80px;
+    height: 80px;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    align-items: center;
+    margin-top: auto;
     cursor: pointer;
+}
+
+.bagWidget {
+    position: relative;
+    font-size: 20px;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.bagWidget:hover {
+    color: var(--color-gray);
 }
 
 .cartCount {
     position: absolute;
-    top: -6px;
-    right: -5px;
-    background-color: var(--color-accent);
-    color: var(--color-dark);
-    font-size: 12px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 10px 10px 50px 0 rgba(0, 0, 0, 0.1);
+    top: 8px;
+    left: 9px;
+    color: var(--color-white);
+    font-size: .6rem;
+    font-weight: 400;
+    transition: all .2s ease-in-out;
 }
 
 .cartCount:hover {
-    font-weight: bold;
+    font-weight: 600;
 }
 
-@media (min-width: 912px) {
-    .nav {
-        display: flex;
-        align-items: center;
-        max-height: none;
-        top: 0;
-        position: relative;
-        float: right;
-        width: fit-content;
-        background-color: transparent;
-    }
+.userAvatar {
+    color: var(--color-white);
+    transition: all .2s ease-in-out;
+}
 
-    .menu {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        list-style-type: none;
-    }
+.userAvatar:hover {
+    color: var(--color-gray);
+}
 
+.adminAvatar {
+    color: var(--color-accent);
+    transition: all .2s ease-in-out;
+}
 
+.navLinksPc {
+    display: none;
+}
 
-    .hamb {
+@media (min-width: 769px) {
+
+    .burgerMenu {
         display: none;
     }
+
+    .navBar {
+        display: flex;
+        align-items: center;
+        margin: auto;
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+
+    .navLinksPc {
+        display: flex;
+        font-size: 12px;
+        gap: 2rem;
+    }
+
+    .navLinksPc a {
+        font-size: .8rem;
+        color: var(--color-white);
+        transition: all .2s ease-in-out;
+    }
+
+    .navLinksPc a:hover {
+        color: var(--color-secondary);
+        transform: translateY(-2px);
+    }
+
 }

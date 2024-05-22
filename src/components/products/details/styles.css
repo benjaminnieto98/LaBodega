@@ -2,23 +2,24 @@
     display: flex;
     flex-direction: row;
     margin: auto;
-    height: 650px;
-    width: 1300px;
+    height: auto;
+    width: auto;
     border-radius: 7px 7px 7px 7px;
     -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
 }
 
 .cardDetailImage {
     float: left;
-    background-color: #FFFFFF;
-    height: 650px;
-    width: 800px;
+    width: 450px;
 }
 
-.cardDetailImageContainer img {
-    border-radius: 7px 0 0 7px;
+.cardDetailImageContainer {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .cardDetailContent {
@@ -85,40 +86,61 @@
     margin-bottom: 24px;
 }
 
-.cardDetailButton {
-    display: inline-block;
-    height: fit-content;
-    width: fit-content;
-    text-transform: uppercase;
-    letter-spacing: 0.3rem;
-    font-size: 3rem;
-    font-weight: bold;
-    cursor: pointer;
+.CartDetailBtn {
+    width: 200px;
+    height: 60px;
+    border-radius: 12px;
     border: none;
-    outline: none;
-    background: transparent;
-    color: var(--color-dark);
+    background-color: rgb(255, 208, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: .5s;
+    overflow: hidden;
     position: relative;
-    transition: all 0.5s;
-    z-index: 0;
 }
 
-.cardDetailButton::before {
-    content: "";
+.IconDetailContainer {
     position: absolute;
-    top: 0;
-    left: -5%;
-    width: 5px;
+    left: -50px;
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: .5s;
+}
+
+.textDetail {
     height: 100%;
-    background-color: var(--color-accent);
-    z-index: -1;
-    transition: all 0.5s;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(17, 17, 17);
+    z-index: 1;
+    transition-duration: .5s;
+    font-size: 1.5em;
+    font-weight: 600;
 }
 
-.cardDetailButton:hover::before {
-    width: 110%;
+.CartDetailBtn:hover .IconDetailContainer {
+    transform: translateX(58px);
+    border-radius: 40px;
+    transition-duration: .5s;
 }
 
-.cardDetailButton:hover {
-    color: #FFFFFF;
+.CartDetailBtn:hover .textDetail {
+    transform: translate(10px, 0px);
+    transition-duration: .5s;
+}
+
+.CartDetailBtn:active {
+    transform: scale(0.95);
+    transition-duration: .5s;
 }

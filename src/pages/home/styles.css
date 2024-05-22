@@ -1,22 +1,22 @@
-.loaderContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    margin: auto;
-}
-
 .contentContainer {
-    display: block;
+    display:block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70vw;
     margin: auto;
+    width: 60vw;
+}
+.title{
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+.subtitle{
+    color: var(--color-gray);
+    font-size: 1.2rem;
 }
 
 .filterContainer {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,27 +26,21 @@
     display: flex;
     font-size: 2rem;
     font-weight: bold;
-    padding: 1rem;
     align-items: center;
     justify-content: center;
 }
 
 .cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    gap: 0.2rem;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 170px);
+    justify-content: space-evenly;
+    gap: .5rem;
+    width: 100%;
 }
 
 .categoriesContainer {
-    min-width: 200px;
-    max-width: 80vw;
     height: fit-content;
-    padding: 1rem;
-    border: none;
+    padding-top: .5rem;
     transition: all 0.3s ease-in-out;
     color: var(--color-secondary);
 }
@@ -60,4 +54,13 @@
 
 .categoryName:hover {
     color: var(--color-accent);
+}
+
+@media (max-width: 769px) {
+    .contentContainer {
+        width: 90vw;
+    }
+
+
+    
 }

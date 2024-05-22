@@ -1,20 +1,28 @@
-import { useLocation } from 'react-router-dom';
-import './styles.css'
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './styles.css';
+import successAnimation from '../../assets/success.json';
+import Lottie from 'lottie-react';
 
 const SuccessOrder = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { orderId } = location.state || { orderId: null };
 
-    const { orderId } = location.state || { orderId: null }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigate('/');
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [navigate]);
+
     return (
-        <div className='successContainer'>
-            <div class="successTitle">
-                <span>¡Congratulations!</span>
-                <span>¡Congratulations!</span>
-            </div>
-            <h2 className='successDescription'><span className="material-symbols-rounded">rocket_launch</span> Your order was successful</h2>
-            <p className='orderId'>Order Id: <span>{orderId}</span></p>
+        <div className="successOrderContainer">
+            <h1>¡Tu pedido se envió con éxito!</h1>
+            <Lottie animationData={successAnimation} loop={false} className='animation'/>
         </div>
-    )
+    );
 }
 
-export default SuccessOrder
+export default SuccessOrder;

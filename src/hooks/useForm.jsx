@@ -57,10 +57,7 @@ export const useForm = (initialState) => {
 
         for (const key in formState) {
             const item = formState[key];
-            if (key !== name && hasError) {
-                isFormValid = false;
-                break;
-            } else if (key !== name && item.hasError) {
+            if (item.hasError) {
                 isFormValid = false;
                 break;
             }

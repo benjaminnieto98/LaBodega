@@ -8,13 +8,10 @@ import Total from '../../components/cart/total';
 
 function Cart() {
     const navigate = useNavigate();
-    const { cart, onAddToCart, onRemoveItem, onDecreaseItem, total, getTotalItemQuantity, clearCart } = useContext(CartContext);
+    const {cart, onAddToCart, onRemoveItem, onDecreaseItem, total, getTotalItemQuantity } = useContext(CartContext);
 
     const onHandlerCreateCart = async () => {
         const newCart = {
-            buyer: {
-                id: 1,
-            },
             items: cart,
             createdAt: new Date(),
             total: total,
@@ -33,8 +30,8 @@ function Cart() {
     return (
         <div>
             <div className='cartContainer'>
-                <h2>Cart</h2>
-                {cart.length === 0 && <h3>Cart is empty</h3>}
+                <h1 className='title'>Carrito🛒</h1>
+                {cart.length === 0 && <h2>No hay productos en tu carrito...</h2>}
                 {
                     cart?.length > 0 && cart.map((product) => (
                         <CartItem key={product.id} {...product} onAddToCart={onAddToCart} onDecreaseItem={onDecreaseItem} onRemoveItem={onRemoveItem} />

@@ -24,7 +24,6 @@ const Slider = memo(({ children }) => {
     }
 
     const onHandleTouchMove = (event) => {
-        event.preventDefault();
         const x = event.touches[0].clientX - sliderContentRef.current.offsetLeft;
         const walk = (x - startX.current) * 3;
         sliderContentRef.current.scrollLeft = scrollLeft.current - walk;

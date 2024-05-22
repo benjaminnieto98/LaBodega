@@ -1,116 +1,112 @@
 .card {
-
-    background-color: #FFFFFF;
-    color: var(--color-dark);
+    background-color: var(--color-bg);
+    color: var(--color-white);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 40px;
-    margin: .5rem;
-    width: 316px;
-    max-width: 320px;
-    height: 29rem;
-    border-radius: 18px;
-    box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
-    transition: all .3s cubic-bezier(0, 0, .5, 1);
+    margin: 6px;
+    min-width: 160px;
+    max-width: 160px;
+    height: 250px;
+    border-radius: 10px;
+    border: 2px solid var(--color-gray);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, .5);
 }
 
 .card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px 4px var(--color-black);
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 1);
 }
 
 .cardTitleContainer {
-    padding: 28px 28px 13px 28px
+    padding-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction:column;
+    align-items: start;
 }
 
 .cardTitle {
-    height: 58px;
-    font-size: 24px;
-    line-height: 1.16;
+    font-size: .9rem;
     font-weight: 600;
-    letter-spacing: .009em;
-    margin: 0px;
-    padding: 0px;
-    color: #1d1d1f;
+    color: var(--color-white);
+}
+
+.cardMeasure{
+    font-size: .7rem;
+    font-weight: 400;
+    color: var(--color-gray);
+    margin: 0;
+    padding: 0;
 }
 
 .cardImageContainer {
     position: relative;
     display: block;
-    max-height: 236px;
+    max-height: 120px;
     overflow: hidden;
-    margin: 3px;
 }
 
 .cardImage {
     display: block;
-    height: 210px;
-    width: 270px;
+    height: 110px;
     margin: 0 auto;
+    object-fit: cover;
 }
 
 .cardActionsContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cardPrice {
-    font-weight: 400;
-    font-size: 1rem;
-    margin: 10px;
+    font-weight: 500;
+    font-size: .9rem;
+    color:var(--color-white);
+    margin-top: 10px;
 }
 
-.cardButton {
-    width: 140px;
-    height: 45px;
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
+.CartBtn {
+    width: 90px;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 20px;
     border: none;
-    outline: none;
-    background: transparent;
-    color: var(--color-dark);
+    background-color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
     position: relative;
-    transition: all 0.5s;
-    z-index: 0;
-    margin: 10px 0 10px 0;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, .5);
 }
 
-.cardButton::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
+.CartBtn:hover {
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 1);
+}
+
+.text {
     height: 100%;
-    background-color: var(--color-accent);
-    z-index: -1;
-    transition: all 0.5s;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    z-index: 1;
+    letter-spacing: 1px;
+    transition-duration: .5s;
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
-.cardButton:hover::before {
-    width: 100%;
-}
 
-.cardButton:hover {
-    color: var(--color-primary);
-}
 
-.cartButttonContainer {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.cartButttonContainer:active {
-    outline: none;
-}
-
-.card:hover .cardButton {
-    transform: scale(1.2);
+.CartBtn:active {
+    transform: scale(0.95);
+    transition-duration: .5s;
 }

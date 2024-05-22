@@ -1,20 +1,24 @@
 import { memo } from 'react';
 import './styles.css';
 
-const Card = memo(({ id, image, name, description, price, stock, onAddToCart, onShowDetails }) => {
+const Card = memo(({ id, image, name, category, measure, price, stock, onAddToCart, onShowDetails }) => {
     return (
         <div className='card'>
-            <button type='button' className='cardButtonContainer' onClick={() => onShowDetails(id)}>
-                <div className="cardTitleContainer">
-                    <h1 className='cardTitle'>{name}</h1>
-                </div>
+            {/* onClick={() => onShowDetails(id)} */}
+            <button type='button' className='cardButtonContainer'>
                 <div className='cardImageContainer'>
                     <img className='cardImage' src={image} alt={name} />
                 </div>
+                <div className="cardTitleContainer">
+                    <h1 className='cardTitle'>{name}</h1>
+                    <h2 className='cardMeasure'>{measure}ml</h2>
+                    <p className='cardPrice'>${price}</p>
+                </div>
             </button >
-            <p className='cardPrice'>USD{price}</p>
             <div className='cardActionsContainer'>
-                <button className='cardButton' onClick={() => onAddToCart(id)}>Add to cart</button>
+                <button className="CartBtn" onClick={() => onAddToCart(id)}>
+                    <p className="text">Agregar</p>
+                </button>
             </div>
         </div>
     )

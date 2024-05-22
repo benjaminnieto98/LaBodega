@@ -1,0 +1,85 @@
+.OrdersContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.OrdersList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.OrderCard {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.OrderCardBody {
+    padding: 20px;
+}
+
+.ProductList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    padding: 6px;
+    margin: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ProductItem {
+    border-bottom: 1px solid var(--color-gray);
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.OrderCard {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.OrderCard.Pendiente {
+    border-color: var(--color-gray);
+}
+
+.OrderCard.Completado {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 8px rgba(83, 179, 234, 0.5);
+}
+
+.StatusSelector select {
+    margin-top: 10px;
+    width: 100%;
+    padding: 6px;
+    border: 2px solid var(--color-gray);
+    border-radius: 6px;
+    background-color: var(--color-dark);
+    font-size: 12px;
+    color: var(--color-white);
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+}
+
+.StatusSelector select.Completed {
+    border-color: var(--color-accent);
+}
+
+.StatusSelector select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.bold {
+    font-weight: 600;
+}

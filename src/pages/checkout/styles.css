@@ -1,8 +1,10 @@
 .checkoutContainer {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .checkoutTitle {}
 
@@ -14,7 +16,7 @@
 
 .checkoutDetailContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1;
     gap: 2rem;
 }
@@ -25,19 +27,29 @@
     gap: 1.6rem;
 }
 
+.checkoutFormContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 .checkoutFormContent input {
     width: 400px;
     background-color: transparent;
+    margin: auto;
 }
 
 .checkoutForm {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
-    width: 600px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    width: 90vw;
     border-radius: 18px;
-    background-color: #212c38;
+    gap: 20px
 }
 
 .cartContainer {
@@ -46,38 +58,40 @@
 }
 
 .checkoutFormInputGroup {
-    padding: 1rem;
-    width: 30vw;
-    margin-left: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    margin-top: 10px;
+
 }
 
 .buttonCheckout {
     display: flex;
     align-items: center;
-    font-size: 2rem;
-    color: var(--color-dark);
+    justify-content: center;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-bg);
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid #FAFAFA;
-    background: var(--color-accent);
-    box-shadow: 3px 3px #fafafa;
+    border-radius: 16px;
+    background: var(--color-secondary);
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    margin: 35px 2px;
+    margin-top: 20px;
+    width: 400px;
 }
-
 
 .buttonCheckout:disabled {
     background-color: #afafaf;
     color: #e0e0e0;
 }
 
-.buttonCheckout:enabled:active {
+.buttonCheckout:active {
+    scale: .99;
     box-shadow: none;
-    transform: translate(3px, 3px);
-}
-
-.buttonCheckout :active:hover {
-    background-color: #edcb35;
-    scale: 1.01;
+    background-color: var(--color-primary);
 }
